@@ -52,4 +52,24 @@ public class Voo {
     public int getQuantidadePassageiros() {
         return quantidadePassageiros;
     }
+
+    public void adicionarPassageiro(Passageiro passageiro) {
+        if (quantidadePassageiros < passageiros.length) {
+            passageiros[quantidadePassageiros] = passageiro;
+            quantidadePassageiros++;
+        }
+    }
+
+    public void listarPassageiros() {
+        for (int i = 0; i < quantidadePassageiros; i++) {
+            System.out.println("Nome: " + passageiros[i].getNome());
+            System.out.println("Idade: " + passageiros[i].getIdade());
+            System.out.println("Sexo: " + passageiros[i].getSexo());
+            System.out.println("CPF: " + passageiros[i].getCpf());
+        }
+    }
+
+    public int getAssentosLivres() {
+        return passageiros.length - quantidadePassageiros;
+    }
 }
