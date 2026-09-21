@@ -62,6 +62,27 @@ public class Sistema {
 		System.out.print("Hora: ");
 		voo.setHora(leitor.readLine());
 
+		System.out.print("Quantidade de passageiros: ");
+		int quantidade = Integer.parseInt(leitor.readLine());
+
+		for (int i = 0; i < quantidade; i++) {
+			Passageiro passageiro = new Passageiro();
+
+			System.out.print("Nome do passageiro: ");
+			passageiro.setNome(leitor.readLine());
+
+			System.out.print("Idade: ");
+			passageiro.setIdade(Integer.parseInt(leitor.readLine()));
+
+			System.out.print("Sexo: ");
+			passageiro.setSexo(leitor.readLine().charAt(0));
+
+			System.out.print("CPF: ");
+			passageiro.setCpf(leitor.readLine());
+
+			voo.adicionarPassageiro(passageiro);
+		}
+
 		companhia.cadastrarVoo(voo);
 		System.out.println("Voo cadastrado.");
 	}
@@ -108,6 +129,10 @@ public class Sistema {
 				System.out.println("Destino: " + voo.getDestino());
 				System.out.println("Data: " + voo.getData());
 				System.out.println("Hora: " + voo.getHora());
+				System.out.println("\nPassageiros:");
+				voo.listarPassageiros();
+				System.out.println("Quantidade de passageiros: " + voo.getQuantidadePassageiros());
+				System.out.println("Assentos livres: " + voo.getAssentosLivres());
 				return;
 			}
 		}
