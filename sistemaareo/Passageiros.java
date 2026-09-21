@@ -1,10 +1,8 @@
-package atividade;
-
-public class Passageiros {
+public class Passageiro {
     private String nome;
     private int idade;
     private char sexo;
-    private int cpf;
+    private String cpf;
 
     public String getNome(){
         return this.nome;
@@ -18,7 +16,7 @@ public class Passageiros {
         return this.sexo;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return this.cpf;
     }
 
@@ -34,7 +32,7 @@ public class Passageiros {
         this.sexo = sexo;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
     
