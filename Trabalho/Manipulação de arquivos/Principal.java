@@ -26,6 +26,10 @@ public class Principal {
         System.out.print("digite a margem de lucro: ");
         float margemLucro = Float.parseFloat(leitor.readLine());
 
+
+
+
+
         BufferedReader arquivoLeitura = new BufferedReader(new FileReader(nomeArqEntrada));
         BufferedWriter arquivoSaida = new BufferedWriter(new FileWriter(nomeArqSaida));
         BufferedWriter arquivoComprar = new BufferedWriter(new FileWriter("comprar.csv"));
@@ -48,11 +52,15 @@ public class Principal {
             p.setPrecoCusto(precoCusto);
             p.setCategoria(categoria);
 
+            float precoVenda = p.getPrecoCusto() + p.getPrecoCusto() * (margemLucro / 100);  // conta bacana pra descobrir o preco de venda
+            p.setPrecoVenda(precoVenda);
+
+            arquivoSaida.write(p.getCodigo() + ";" + p.getNomeProduto() + ";" + p.getPrecoVenda());
+            arquivoSaida.newLine();
         }
 
         arquivoLeitura.close();
         arquivoSaida.close();
         arquivoComprar.close();
-        leitor.close();
     }
 }
