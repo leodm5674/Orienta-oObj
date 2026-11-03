@@ -11,11 +11,21 @@ public class Principal {
 
         BufferedReader leitor = new BufferedReader(new InputStreamReader(System.in));
 
+        
         System.out.print("Digite o arquivo de entrada:");
         String nomeArqEntrada = leitor.readLine();
+
         if (nomeArqEntrada.equals("")) {
-            nomeArqEntrada = "preco_custo.csv";
+        nomeArqEntrada = "preco_custo.csv";
         }
+
+        if (nomeArqEntrada.equals("preco_custo.csv")) {            
+        }
+        
+        else{
+            System.out.println("Arquivo nao encontrado");
+            System.exit(0);
+            }
 
         System.out.print("Digite o arquivo de saida: ");
         String nomeArqSaida = leitor.readLine();
@@ -36,13 +46,22 @@ public class Principal {
 
         String linha;
 
+      
+       
+        arquivoComprar.write("Codigo" + ";" + "Estoque" + ";" + "Produto" + ";" + "Estoque" + ";" + "preco_custo" + ";" + "Categoria" + ";" + "preco_venda");
+        arquivoComprar.newLine();
+        arquivoSaida.write("Codigo" + ";" + "Produto" + ";" + "Preco_Venda");
+        arquivoSaida.newLine();
+
+        arquivoLeitura.readLine(); // tive que por isso, por que ele tava tentando converter texto em numero(o cabecalho)
+
         while ((linha = arquivoLeitura.readLine()) != null) {
             String[] dados = linha.split(";");
 
             int codigo = Integer.parseInt(dados[0]);
             int estoque = Integer.parseInt(dados[1]);
             String nomeProduto = dados[2];
-            float precoCusto = Float.parseFloat(dados[3]);
+            float precoCusto = Float.parseFloat(dados[3].replace(',','.'));
             String categoria = dados[4];
 
             Produto p = new Produto();
@@ -57,6 +76,15 @@ public class Principal {
 
             arquivoSaida.write(p.getCodigo() + ";" + p.getNomeProduto() + ";" + p.getPrecoVenda());
             arquivoSaida.newLine();
+
+          
+            if(p.getEstoque() < 10){
+           
+                arquivoComprar.write(p.getCodigo() + ";" + p.getEstoque() + ";" + p.getNomeProduto() + ";" + p.getPrecoCusto() + ";" + p.getCategoria() + ";" + p.getPrecoVenda());
+                arquivoComprar.newLine();
+            }
+
+
         }
 
         arquivoLeitura.close();
