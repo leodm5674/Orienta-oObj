@@ -1,10 +1,10 @@
 public class Produto {
-    int codigo;
-    int estoque;
-    String nomeProduto;
-    float precoCusto;
-    float precoVenda;
-    String categoria;
+    private int codigo;
+    private int estoque;
+    private String nomeProduto;
+    private float precoCusto;
+    private float precoVenda;
+    private String categoria;
     
     public int getCodigo() {
         return codigo;
