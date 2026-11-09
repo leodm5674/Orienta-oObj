@@ -7,7 +7,7 @@ import java.io.InputStreamReader;
 
 public class Principal {
     static String nomeArqEntrada = "preco_custo.csv";
-    static String nomeArqSaida;
+    static String nomeArqSaida = "preco_venda.csv";
     static float margemLucro = 0;
 
     public static void main(String[] args) throws Exception {
@@ -20,8 +20,8 @@ public class Principal {
 
         String linha;
 
-        arquivoComprar.write("Codigo" + ";" + "Estoque" + ";" + "Produto" + ";" + "Estoque" + ";" + "preco_custo" + ";"
-                + "Categoria" + ";" + "preco_venda");
+        arquivoComprar.write("Codigo" + ";" + "Estoque" + ";" + "Produto" + ";" + ";" + "preco_custo" + ";"
+                + "Categoria");
         arquivoComprar.newLine();
 
         arquivoSaida.write("Codigo" + ";" + "Produto" + ";" + "Preco_Venda");
@@ -57,7 +57,7 @@ public class Principal {
             if (p.getEstoque() < 10) {
 
                 arquivoComprar.write(p.getCodigo() + ";" + p.getEstoque() + ";" + p.getNomeProduto() + ";"
-                        + p.getPrecoCusto() + ";" + p.getCategoria() + ";" + p.getPrecoVenda());
+                        + p.getPrecoCusto() + ";" + p.getCategoria());
                 arquivoComprar.newLine();
             }
 
@@ -77,7 +77,7 @@ public class Principal {
             System.out.println("Escolha uma das opcoes: ");
             System.out.println("1) Definir margem de lucro");
             System.out.println("2) Alterar o nome do arquivo de entrada e saida");
-            System.out.println("3) Sair do menu e processar arquivos"); 
+            System.out.println("3) Sair do menu e processar arquivos");
             System.out.println("Escolha:");
             op = Integer.parseInt(leitor.readLine());
 
@@ -94,11 +94,8 @@ public class Principal {
 
                     if (entrada.equals("")) {
                         nomeArqEntrada = "preco_custo.csv";
-                    }
-                    if (nomeArqEntrada.equals("preco_custo.csv")) {
                     } else {
-                        System.out.println("Arquivo nao encontrado");
-                        System.exit(0);
+                        nomeArqEntrada = entrada; // that will cause an error
                     }
 
                     System.out.print("Digite o arquivo de saida: ");
